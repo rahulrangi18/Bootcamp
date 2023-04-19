@@ -41,7 +41,7 @@ public class UserController {
     public ResponseEntity<?> requestPasswordReset(@RequestParam String email) {
         try {
             String response = userService.requestPasswordReset(email);
-            return ResponseEntity.ok(Map.of("success", true, "error", response));
+            return ResponseEntity.ok(Map.of("success", true, "message", response));
         } catch (MessagingException e) {
             return ResponseEntity.ok(Map.of("success", false, "error", e.getMessage()));
         }

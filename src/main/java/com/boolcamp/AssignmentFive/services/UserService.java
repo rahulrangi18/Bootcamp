@@ -64,7 +64,7 @@ public class UserService {
         user.setResetToken(resetToken);
         userMongoRepository.save(user);
 
-        String resetLink = "http://localhost:4567/ResetLink?token=" + resetToken;
+        String resetLink = "Your reset token is :" + resetToken;
         emailService.sendPasswordResetEmail(email, resetLink);
         return "Password reset email sent to " + email;
     }

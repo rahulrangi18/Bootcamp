@@ -11,12 +11,12 @@ import java.util.Properties;
 public class EmailService {
     private final String SMTP_SERVER = "smtp.gmail.com";
     private final String SMTP_PORT = "587";
-    private final String EMAIL_ADDRESS = "email@gmail.com";
-    private final String EMAIL_PASSWORD = "password";
+    private final String EMAIL_ADDRESS = "grp2bootcamp@gmail.com";
+    private final String EMAIL_PASSWORD = "lmxhkkpkmlxeyddw";
 
     public void sendPasswordResetEmail(String recipientEmail, String resetLink) throws MessagingException {
-        String subject = "Password reset link";
-        String body = "Please click the link below to reset your password:\n\n" + resetLink;
+        String subject = "Password reset token";
+        String body = "please use this token to reset your password:\n\n" + resetLink;
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
