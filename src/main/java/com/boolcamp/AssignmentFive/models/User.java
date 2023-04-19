@@ -40,11 +40,6 @@ public class User {
         this.newPassword = newPassword;
     }
 
-
-
-
-
-
     public String getEmail() {
         return email;
     }

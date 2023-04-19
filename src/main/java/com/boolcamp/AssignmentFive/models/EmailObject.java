@@ -1,6 +1,6 @@
 package com.boolcamp.AssignmentFive.models;
 
-public class Email {
+public class EmailObject {
     private String email;
     private int note_id;
 
