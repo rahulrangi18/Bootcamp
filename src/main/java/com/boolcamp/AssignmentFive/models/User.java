@@ -13,7 +13,33 @@ public class User {
     private String email;
     private String password;
     private String newPassword;
-    private String token="Token not available";
+    private String token;
+    private String ResetToken;
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getResetToken() {
+        return ResetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        ResetToken = resetToken;
+    }
+
+
     public String getEmail() {
         return email;
     }

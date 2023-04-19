@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
+import java.util.Map;
+
 @RestController
 public class UserController {
     @Autowired
@@ -33,5 +36,20 @@ public class UserController {
     public ResponseEntity<String> updatePass(@RequestParam String email, @RequestParam String password, @RequestParam String newPass) {
         String result = userService.updatePass(email, password, newPass);
         return ResponseEntity.ok(result);
+    }
+    @PostMapping("/ResetPass")
+    public ResponseEntity<?> requestPasswordReset(@RequestParam String email) {
+        try {
+            String response = userService.requestPasswordReset(email);
+            return ResponseEntity.ok(Map.of("success", true, "error", response));
+        } catch (MessagingException e) {
+            return ResponseEntity.ok(Map.of("success", false, "error", e.getMessage()));
+        }
+    }
+
+    @PostMapping("/ResetLink")
+    public ResponseEntity<?> resetPassword(@RequestParam String email,@RequestParam String newPass, @RequestParam String token) {
+        String response = userService.resetPassword(email,newPass, token);
+        return ResponseEntity.ok(Map.of("success", true, "error", response));
     }
 }
