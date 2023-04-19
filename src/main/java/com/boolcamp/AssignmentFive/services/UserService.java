@@ -32,6 +32,7 @@ public class UserService {
             return "Incorrect password";
         }
         String token = generateToken();
+        userMongoRepository.delete(user);
         user.setToken(token);
         userMongoRepository.save(user);
         return "Login Successful with token: "+ token;
@@ -45,6 +46,7 @@ public class UserService {
         if (!user.getPassword().equals(password)) {
             return "Incorrect password";
         }
+        userMongoRepository.delete(user);
         user.setPassword(newPass);
         userMongoRepository.save(user);
         return "Password Updated";

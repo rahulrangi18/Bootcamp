@@ -1,24 +1,17 @@
 package com.boolcamp.AssignmentFive.models;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document(collection = "bootcampUsers")
 public class User {
-
+    @Id
+    private String userID;
     @Indexed(unique = true)
     private String email;
     private String password;
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
     private String newPassword;
     private String token="Token not available";
     public String getEmail() {
