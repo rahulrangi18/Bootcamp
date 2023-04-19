@@ -12,7 +12,10 @@ import java.util.UUID;
 public class UserService {
     @Autowired
     private UserMongoRepository userMongoRepository;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     @Autowired
     private EmailService emailService;
     public String setPassLogin(String email, String password) {
@@ -69,16 +72,27 @@ public class UserService {
         return "Password reset email sent to " + email;
     }
 
+<<<<<<< HEAD
     public String resetPassword(String email, String newPassword,String token) {
         User user = userMongoRepository.findByResetToken(token);
         if (user == null) {
             return "Invalid reset token for "+email;
+=======
+    public String resetPassword(String token, String newPassword) {
+        User user = userMongoRepository.findByResetToken(token);
+        if (user == null) {
+            return "Invalid reset token";
+>>>>>>> origin/main
         }
         user.setPassword(newPassword);
         user.setResetToken(null);
         userMongoRepository.save(user);
         return "Password reset successfully";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
     private String generateToken() {
         return UUID.randomUUID().toString();
     }

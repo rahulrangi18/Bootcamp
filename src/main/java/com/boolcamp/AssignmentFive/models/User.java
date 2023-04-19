@@ -38,8 +38,11 @@ public class User {
     public void setResetToken(String resetToken) {
         ResetToken = resetToken;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/main
     public String getEmail() {
         return email;
     }
