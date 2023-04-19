@@ -66,7 +66,7 @@ public class UserService {
 
         String resetLink = "Your reset token is :" + resetToken;
         emailService.sendPasswordResetEmail(email, resetLink);
-        return "Password reset email sent to " + email;
+        return "Password reset token sent to " + email;
     }
 
     public String resetPassword(String email, String newPassword,String resetToken) {
