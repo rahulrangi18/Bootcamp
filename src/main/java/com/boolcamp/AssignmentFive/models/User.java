@@ -14,7 +14,16 @@ public class User {
     private String password;
     private String newPassword;
     private String token;
-    private String ResetToken;
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    private String resetToken;
     public String getUserID() {
         return userID;
     }
@@ -31,13 +40,9 @@ public class User {
         this.newPassword = newPassword;
     }
 
-    public String getResetToken() {
-        return ResetToken;
-    }
 
-    public void setResetToken(String resetToken) {
-        ResetToken = resetToken;
-    }
+
+
 
 
     public String getEmail() {

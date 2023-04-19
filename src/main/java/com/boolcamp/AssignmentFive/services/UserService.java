@@ -69,11 +69,12 @@ public class UserService {
         return "Password reset email sent to " + email;
     }
 
-    public String resetPassword(String email, String newPassword,String token) {
-        User user = userMongoRepository.findByResetToken(token);
-        if (user == null) {
-            return "Invalid reset token for "+email;
+    public String resetPassword(String email, String newPassword,String resetToken) {
+        User user = userMongoRepository.findByResetToken(resetToken);
+        if (user==null) {
+            return "Incorrect reset token for email "+ email;
         }
+        userMongoRepository.delete(user);
         user.setPassword(newPassword);
         user.setResetToken(null);
         userMongoRepository.save(user);

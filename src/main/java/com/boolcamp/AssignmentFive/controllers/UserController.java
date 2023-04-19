@@ -34,8 +34,8 @@ public class UserController {
 
     @PostMapping("/UpdatePass")
     public ResponseEntity<String> updatePass(@RequestParam String email, @RequestParam String password, @RequestParam String newPass) {
-        String result = userService.updatePass(email, password, newPass);
-        return ResponseEntity.ok(result);
+        String response = userService.updatePass(email, password, newPass);
+        return ResponseEntity.ok(response);
     }
     @PostMapping("/ResetPass")
     public ResponseEntity<?> requestPasswordReset(@RequestParam String email) {
@@ -48,8 +48,8 @@ public class UserController {
     }
 
     @PostMapping("/ResetLink")
-    public ResponseEntity<?> resetPassword(@RequestParam String email,@RequestParam String newPass, @RequestParam String token) {
-        String response = userService.resetPassword(email,newPass, token);
-        return ResponseEntity.ok(Map.of("success", true, "error", response));
+    public ResponseEntity<?> resetPassword(@RequestParam String email,@RequestParam String newPass, @RequestParam String resetToken) {
+        String response = userService.resetPassword(email,newPass, resetToken);
+        return ResponseEntity.ok(response);
     }
 }
