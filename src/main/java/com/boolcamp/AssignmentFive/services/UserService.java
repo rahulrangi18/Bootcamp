@@ -20,7 +20,7 @@ public class UserService {
         user.setEmail(email);
         user.setPassword(password);
         userMongoRepository.save(user);
-        return "Login Successful";
+        return "Signup Successful";
     }
 
     public String passLogin(String email, String password) {
