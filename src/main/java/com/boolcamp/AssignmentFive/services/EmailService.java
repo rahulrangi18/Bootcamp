@@ -11,8 +11,8 @@ import java.util.Properties;
 public class EmailService {
     private final String SMTP_SERVER = "smtp.gmail.com";
     private final String SMTP_PORT = "587";
-    private final String EMAIL_ADDRESS = "rahulrangi18@gmail.com";
-    private final String EMAIL_PASSWORD = "Rangi@2018";
+    private final String EMAIL_ADDRESS = "email@gmail.com";
+    private final String EMAIL_PASSWORD = "password@2018";
 
     public void sendPasswordResetEmail(String recipientEmail, String resetLink) throws MessagingException {
         String subject = "Password reset link";
