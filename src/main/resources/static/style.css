@@ -4,6 +4,9 @@ body {
         h1 {
             text-align: center;
         }
+        h2 {
+                    text-align: center;
+                }
         form {
             margin: 0 auto;
             width: 50%;
