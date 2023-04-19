@@ -32,9 +32,6 @@ public class UserController {
     @PostMapping("/UpdatePass")
     public ResponseEntity<String> updatePass(@RequestParam String email, @RequestParam String password, @RequestParam String newPass) {
         String result = userService.updatePass(email, password, newPass);
-        if (!result.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
-        }
-        return ResponseEntity.ok("Password updated successfully");
+        return ResponseEntity.ok(result);
     }
 }

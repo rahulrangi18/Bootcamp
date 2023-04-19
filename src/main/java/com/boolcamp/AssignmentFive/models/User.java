@@ -20,7 +20,7 @@ public class User {
     }
 
     private String newPassword;
-    private String token;
+    private String token="Token not available";
     public String getEmail() {
         return email;
     }
