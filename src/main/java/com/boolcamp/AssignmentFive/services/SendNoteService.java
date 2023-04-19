@@ -20,7 +20,7 @@ public class SendNoteService {
         String recipientEmail = email.getEmail();
         int noteId = email.getNote_id();
         String subject = "Note #" + noteId + " shared with you";
-        String body = "You have been shared Note #" + noteId;
+        String body = "Group-2 Bootcamp shared this Note #" + noteId;
 
         emailService.sendEmail(recipientEmail, subject, body);
     }
