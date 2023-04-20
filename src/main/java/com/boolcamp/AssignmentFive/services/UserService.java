@@ -3,6 +3,7 @@ package com.boolcamp.AssignmentFive.services;
 import com.boolcamp.AssignmentFive.models.User;
 import com.boolcamp.AssignmentFive.repositories.UserMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -15,6 +16,10 @@ public class UserService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public String setPassLogin(String email, String password) {
         User existingUser = userMongoRepository.findByEmail(email);
         if (existingUser != null) {
@@ -22,7 +27,7 @@ public class UserService {
         }
         User user = new User();
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
         userMongoRepository.save(user);
         return "Signup Successful";
     }
@@ -32,7 +37,7 @@ public class UserService {
         if (user == null) {
             return "User does not exist";
         }
-        if (!user.getPassword().equals(password)) {
+        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return "Incorrect password";
         }
         String token = generateToken();
@@ -47,14 +52,15 @@ public class UserService {
         if (user == null) {
             return "User does not exist";
         }
-        if (!user.getPassword().equals(password)) {
+        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return "Incorrect password";
         }
         userMongoRepository.delete(user);
-        user.setPassword(newPass);
+        user.setPassword(bCryptPasswordEncoder.encode(newPass));
         userMongoRepository.save(user);
         return "Password Updated";
     }
+
     public String requestPasswordReset(String email) throws MessagingException {
         User user = userMongoRepository.findByEmail(email);
         if (user == null) {
@@ -69,17 +75,18 @@ public class UserService {
         return "Password reset token sent to " + email;
     }
 
-    public String resetPassword(String email, String newPassword,String resetToken) {
+    public String resetPassword(String email, String newPassword, String resetToken) {
         User user = userMongoRepository.findByResetToken(resetToken);
         if (user==null) {
             return "Incorrect reset token for email "+ email;
         }
         userMongoRepository.delete(user);
-        user.setPassword(newPassword);
+        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
         user.setResetToken(null);
         userMongoRepository.save(user);
         return "Password reset successfully";
     }
+
     private String generateToken() {
         return UUID.randomUUID().toString();
     }
