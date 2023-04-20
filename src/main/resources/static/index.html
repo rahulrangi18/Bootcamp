@@ -3,53 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Bootcamp Group 2</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        hr {
+            margin: 20px auto;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .feature-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+            margin: 10px;
+        }
+
+        .feature-button:hover {
+            background-color: #45a049;
+        }
+
+        .feature-buttons {
+            margin: 5% auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: fit-content;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 <h1>Welcome to the Bootcamp Group 2</h1>
 <hr>
-<h1>Task No.7</h1>
-<h2>Signup</h2>
-<form action="/SetPassLogin" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <input type="submit" value="Signup">
-</form>
-<h2>Login</h2>
-<form action="/PassLogin" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <input type="submit" value="Login">
-</form>
-<h2>Reset Password Link Generator</h2>
-<form action="/ResetPass" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <input type="submit" value="Send Reset Link">
-</form>
-
-<h2>Reset Password using Reset Token</h2>
-<form action="/ResetLink" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="newPass">New Password:</label>
-    <input type="password" id="newPass" name="newPass" required>
-    <label for="resetToken">Reset Token:</label>
-    <input type="text" id="resetToken" name="resetToken" required>
-    <input type="submit" value="Set Password">
-</form>
-<h1>Task No.7</h1>
-<h2>Send Note Email</h2>
-<form action="/EmailNote" method="POST">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-    <label for="note_id">Note ID</label>
-    <input type="text" id="note_id" name="note_id" required>
-    <input type="submit" value="Send Email">
-</form>
+<div class="feature-buttons">
+    <button class="feature-button" onclick="window.location.href='Feature5.html'">Feature 5</button>
+    <button class="feature-button" onclick="window.location.href='Feature6.html'">Feature 6</button>
+    <button class="feature-button" onclick="window.location.href='Feature7.html'">Feature 7</button>
+</div>
 </body>
 </html>
