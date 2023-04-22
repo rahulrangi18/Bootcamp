@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.0.5'
-	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 group = 'com.boolcamp'
@@ -14,14 +14,18 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb' // added
-	implementation 'org.projectlombok:lombok:1.18.22'
 	implementation 'com.sun.mail:javax.mail:1.6.2'
 	implementation 'com.sun.mail:smtp:1.6.2'
 	implementation 'org.springframework.security:spring-security-crypto:5.6.1'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.hibernate:hibernate-core:5.6.1.Final'
+	implementation 'org.hibernate:hibernate-entitymanager:5.6.1.Final'
+	implementation 'org.projectlombok:lombok:1.18.22'
+	runtimeOnly 'com.h2database:h2:1.4.200'
+	runtimeOnly 'org.postgresql:postgresql'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
