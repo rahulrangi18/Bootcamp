@@ -1,4 +1,4 @@
-package com.boolcamp.AssignmentFive.models;
+package com.bootcamp.Assignment.models;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,7 +14,7 @@ public class User {
     private String password;
     private String newPassword;
     private String token;
-
+    private String resetToken;
     public String getResetToken() {
         return resetToken;
     }
@@ -23,7 +23,7 @@ public class User {
         this.resetToken = resetToken;
     }
 
-    private String resetToken;
+
     public String getUserID() {
         return userID;
     }
@@ -64,4 +64,3 @@ public class User {
         this.token = token;
     }
 }
-

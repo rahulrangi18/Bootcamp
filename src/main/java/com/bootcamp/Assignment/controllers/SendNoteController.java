@@ -1,17 +1,13 @@
-package com.boolcamp.AssignmentFive.controllers;
+package com.bootcamp.Assignment.controllers;
 
-import com.boolcamp.AssignmentFive.models.EmailObject;
-import com.boolcamp.AssignmentFive.services.SendNoteService;
+import com.bootcamp.Assignment.services.SendNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
-import java.util.Map;
 
 @RestController
 public class SendNoteController {

@@ -1,5 +1,5 @@
-package com.boolcamp.AssignmentFive.controllers;
-import com.boolcamp.AssignmentFive.services.UserService;
+package com.bootcamp.Assignment.controllers;
+import com.bootcamp.Assignment.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

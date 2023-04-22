@@ -1,6 +1,5 @@
-package com.boolcamp.AssignmentFive.services;
+package com.bootcamp.Assignment.services;
 
-import com.boolcamp.AssignmentFive.models.EmailObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

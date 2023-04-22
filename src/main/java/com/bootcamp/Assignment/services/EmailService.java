@@ -1,4 +1,4 @@
-package com.boolcamp.AssignmentFive.services;
+package com.bootcamp.Assignment.services;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
