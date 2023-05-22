@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -20,17 +21,39 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public String setPassLogin(String email, String password) {
+    public String sendOTP(String email) throws MessagingException {
         User existingUser = userRepository.findByEmail(email);
         if (existingUser != null) {
             return "User already exists";
         }
+
+        String otp = generateOTP();
         User user = new User();
         user.setEmail(email);
-        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setOtp(otp);
         userRepository.save(user);
-        return "Signup Successful";
+        String subject = "OTP Verification";
+        String body = "Your OTP is: " + otp;
+        emailService.sendEmail(email, subject, body);
+        return "OTP sent successfully";
     }
+
+
+    public String setPassLogin(String email, String password, String enteredOTP) throws MessagingException {
+        User existingUserWithOTP = userRepository.findByEmailAndOtp(email, enteredOTP);
+        if (existingUserWithOTP == null) {
+            return "Invalid OTP";
+        }
+        userRepository.delete(existingUserWithOTP);
+        existingUserWithOTP.setPassword(bCryptPasswordEncoder.encode(password));
+        existingUserWithOTP.setOtp(null);
+        userRepository.save(existingUserWithOTP);
+        String subject = "Signup Confirmation";
+        String body = "Thank you for signing up! Your account has been created successfully with Bootcamp Group2.";
+        emailService.sendEmail(email, subject, body);
+        return "User created successfully";
+    }
+
 
     public String passLogin(String email, String password) {
         User user = userRepository.findByEmail(email);
@@ -75,7 +98,7 @@ public class UserService {
         return "Password reset token sent to " + email;
     }
 
-    public String resetPassword(String email, String newPassword, String resetToken) {
+    public String resetPassword(String email, String newPassword, String resetToken) {s
         User user = userRepository.findByResetToken(resetToken);
         if (user==null) {
             return "Incorrect reset token for email "+ email;
@@ -90,4 +113,10 @@ public class UserService {
     private String generateToken() {
         return UUID.randomUUID().toString();
     }
+    private String generateOTP() {
+        Random random = new Random();
+        int otp = 100000 + random.nextInt(900000); // Generate a random 6-digit OTP
+        return String.valueOf(otp);
+    }
+
 }

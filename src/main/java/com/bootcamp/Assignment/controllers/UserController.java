@@ -14,11 +14,21 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-    @PostMapping("/SetPassLogin")
-    public ResponseEntity<String> setPassLogin(@RequestParam String email, @RequestParam String password) {
-        String result = userService.setPassLogin(email, password);
-        if (!result.isEmpty()) {
+    @PostMapping("/SendOTP")
+    public ResponseEntity<String> sendOTP(@RequestParam String email) throws MessagingException {
+        String result = userService.sendOTP(email);
+        if (result.equals("User already exists")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/SetPassLogin")
+    public ResponseEntity<String> setPassLogin(@RequestParam String email, @RequestParam String password, @RequestParam String enteredOTP) throws MessagingException {
+        String result = userService.setPassLogin(email, password, enteredOTP);
+        System.out.println(result);
+        if (result.equals("Invalid OTP") || result.equals("User already exists")) {
+            return ResponseEntity.ok(result);
         }
         return ResponseEntity.ok("User created successfully");
     }
@@ -52,4 +62,7 @@ public class UserController {
         String response = userService.resetPassword(email,newPass, resetToken);
         return ResponseEntity.ok(response);
     }
+
+
+
 }

@@ -9,10 +9,17 @@ import java.util.Properties;
 
 @Service
 public class EmailService {
-    private final String SMTP_SERVER = "smtp.gmail.com";
-    private final String SMTP_PORT = "587";
-    private final String EMAIL_ADDRESS = "grp2bootcamp@gmail.com";
-    private final String EMAIL_PASSWORD = "lmxhkkpkmlxeyddw";
+    @Value("${SMTP_SERVER}")
+    private String SMTP_SERVER;
+
+    @Value("${SMTP_PORT}")
+    private String SMTP_PORT;
+
+    @Value("${EMAIL_ADDRESS}")
+    private String EMAIL_ADDRESS;
+
+    @Value("${EMAIL_PASSWORD}")
+    private String EMAIL_PASSWORD;
 
     public void sendPasswordResetEmail(String recipientEmail, String resetLink) throws MessagingException {
         String subject = "Password reset token";

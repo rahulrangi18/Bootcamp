@@ -18,6 +18,7 @@ public class SendNoteController {
     public ResponseEntity<String> sendNoteEmail(@RequestParam String email, @RequestParam String note_id) {
         try {
             String response = sendNoteService.sendNoteEmail(email,note_id);
+            System.out.println(response);
             return ResponseEntity.ok(response);
         } catch (MessagingException e) {
             return ResponseEntity.ok("Unable to Send Email to "+email);
